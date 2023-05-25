@@ -31,6 +31,12 @@
 namespace amr
 {
 
+    enum encodingMethod : int
+    {
+        X1=1, 
+        X2=2, 
+        X3=4};
+
     struct WheelJointHandle
     {
         WheelJointHandle()
@@ -109,12 +115,19 @@ namespace amr
 
         struct 
         {
+            double encoderResolution;
+
+            double gearRatio;
 
         }m_MotorParams;
+
+        int encodingMultiplier;
         
         void configure();
 
         void encoderDataCallback(const amr_custom_interfaces::EncoderData& encoder_data);
+
+        double motorPositionToWheelPosition(const int64_t encoder_count);
 
     };
 }

@@ -80,6 +80,8 @@ namespace amr
         double leftWheelJointPosition;
         double rightWheelJointPosition;
 
+        
+
         if(m_EnableHoming)
         {
             if(m_HomingHelper.initialRead)
@@ -123,6 +125,15 @@ namespace amr
     void HardwareInterface::encoderDataCallback(const amr_custom_interfaces::EncoderData& encoder_data)
     {
         m_EncoderDataBuffer.writeFromNonRT(encoder_data);
+    }
+
+    double HardwareInterface::motorPositionToWheelPosition(const int64_t encoder_count)
+    {
+        double motorPosition = 
+            (double)encoder_count / 
+            (encodingMultiplier * m_MotorParams.encoderResolution);
+
+        return motorPosition * m_MotorParams.gearRatio;
     }
 }
 

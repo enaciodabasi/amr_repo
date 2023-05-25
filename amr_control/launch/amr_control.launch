@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <rosparam file="$(find amr_control)/config/amr_control.yaml" command="load"></rosparam>
+
+    <node 
+        name="controller_manager" 
+        pkg="controller_manager" 
+        type="spawner"
+        respawn="true"
+        output="screen"
+        ns="amr"
+        args="/amr/mobile_base_controller /amr/joint_state_controller"           
+    >
+    <remap from="/joint_states" to="/amr/joint_states"></remap>
+    </node>
+
+</launch>

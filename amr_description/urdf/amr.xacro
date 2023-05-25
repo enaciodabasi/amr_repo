@@ -1,197 +1,30 @@
 <?xml version="1.0" ?>
-<robot name="amr_aq" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="amr" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:include filename="$(find amr_description)/urdf/materials.xacro" />
-<xacro:include filename="$(find amr_description)/urdf/amr_aq.trans" />
-<xacro:include filename="$(find amr_description)/urdf/amr_aq.gazebo" />
+<xacro:include filename="$(find amr_description)/urdf/amr.trans" />
+<xacro:include filename="$(find amr_description)/urdf/amr.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="0.26269888358842164 -0.16501500570044608 0.22317525590757661" rpy="0 0 0"/>
+    <origin xyz="0.0 0.0 +0.125" rpy="0 0 0"/>
     <mass value="5.268945875000281"/>
+    <!-- <mass value="0.0"/> -->
     <inertia ixx="0.123547" iyy="0.255706" izz="0.335967" ixy="0.0" iyz="0.0" ixz="-5e-06"/>
   </inertial>
   <visual>
     <origin xyz="-0.240 0.2 -0.125" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://amr_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://amr_description/meshes/base_link1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.240 0.2 -0.125" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://amr_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://amr_description/meshes/base_link1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
-
-<!-- <link name="link_5_1">
-  <inertial>
-    <origin xyz="-1.3948845977579394e-07 -0.004908904469275659 -0.008687321814093957" rpy="0 0 0"/>
-    <mass value="0.041002209042491855"/>
-    <inertia ixx="7e-06" iyy="9e-06" izz="9e-06" ixy="0.0" iyz="-2e-06" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.007315 0.045015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_5_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.007315 0.045015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_5_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_4_1">
-  <inertial>
-    <origin xyz="-1.394884613500555e-07 -0.004908904469283215 -0.008687321814097898" rpy="0 0 0"/>
-    <mass value="0.041002209042491855"/>
-    <inertia ixx="7e-06" iyy="9e-06" izz="9e-06" ixy="0.0" iyz="-2e-06" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.007315 0.285015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_4_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.007315 0.285015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_4_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_6_1">
-  <inertial>
-    <origin xyz="-1.3948845645206376e-07 -0.004908904469273646 -0.008687321814093818" rpy="0 0 0"/>
-    <mass value="0.041002209042491855"/>
-    <inertia ixx="7e-06" iyy="9e-06" izz="9e-06" ixy="0.0" iyz="-2e-06" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.532685 0.045015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_6_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.532685 0.045015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_6_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_3_1">
-  <inertial>
-    <origin xyz="-1.3948845767330909e-07 -0.0049089044692826045 -0.008687321814098037" rpy="0 0 0"/>
-    <mass value="0.041002209042491855"/>
-    <inertia ixx="7e-06" iyy="9e-06" izz="9e-06" ixy="0.0" iyz="-2e-06" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.532685 0.285015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_3_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.532685 0.285015 -0.149011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_3_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_7_1">
-  <inertial>
-    <origin xyz="-1.394884529531265e-07 -2.72494777575627e-08 3.997817140943827e-07" rpy="0 0 0"/>
-    <mass value="0.15743903087906"/>
-    <inertia ixx="2e-05" iyy="2e-05" izz="2e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.007315 0.058015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_7_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.007315 0.058015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_7_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_8_1">
-  <inertial>
-    <origin xyz="-1.3948845439468172e-07 -2.724948555687945e-08 3.997817100975798e-07" rpy="0 0 0"/>
-    <mass value="0.15743903087906"/>
-    <inertia ixx="2e-05" iyy="2e-05" izz="2e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.007315 0.298015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_8_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.007315 0.298015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_8_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_10_1">
-  <inertial>
-    <origin xyz="-1.394884497907256e-07 -2.7249475648138954e-08 3.997817140943827e-07" rpy="0 0 0"/>
-    <mass value="0.15743903087906"/>
-    <inertia ixx="2e-05" iyy="2e-05" izz="2e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.532685 0.058015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_10_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.532685 0.058015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_10_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_9_1">
-  <inertial>
-    <origin xyz="-1.3948845056788173e-07 -2.7249484890745634e-08 3.997817100975798e-07" rpy="0 0 0"/>
-    <mass value="0.15743903087906"/>
-    <inertia ixx="2e-05" iyy="2e-05" izz="2e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.532685 0.298015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_9_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.532685 0.298015 -0.130011" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://amr_description/meshes/link_9_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link> -->
 
 <link name="right_wheel_link">
   <inertial>
@@ -200,7 +33,6 @@
     <inertia ixx="0.000114" iyy="0.000156" izz="0.000114" ixy="0.0" iyz="-0.0" ixz="0.0"/>
   </inertial>
   <visual>
-    <!-- <origin xyz="0 0 0" rpy="0 0 0"/> -->
     <origin xyz="-0.245 0.365 -0.1520" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://amr_description/meshes/link_1_1.stl" scale="0.001 0.001 0.001"/>
@@ -223,8 +55,6 @@
   </inertial>
   <visual>
   <origin xyz="-0.2425 0.005 -0.155" rpy="0 0 0"/>
-    <!-- <origin xyz="-0.262685 -0.001985 -0.140011" rpy="0 0 0"/> -->
-    <!-- <origin xyz="0 0 0" rpy="0 0 0"/> -->
     <geometry>
       <mesh filename="package://amr_description/meshes/link_2_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -238,34 +68,20 @@
   </collision>
 </link>
 
-<!-- <joint name="joint_1" type="continuous">
-  <origin xyz="0.262685 -0.332015 0.140011" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="link_1_1"/>
-  <axis xyz="-0.0 -1.0 -0.0"/>
-</joint>
+<link name="laser_frame">
+  <visual>
+    <geometry>
+      <cylinder radius="0.05" length="0.04"/>
+    </geometry>
+    <material name="red"></material>
+    <collision>
+        <geometry>
+            <cylinder radius="0.05" length="0.04"/>
+        </geometry>
+    </collision>
+  </visual>
+</link>
 
-<joint name="joint_2" type="continuous">
-  <origin xyz="0.262685 0.001985 0.140011" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="link_2_1"/>
-  <axis xyz="0.0 1.0 0.0"/>
-</joint> -->
-
-<!-- <joint name="joint_1" type="continuous">
-  <origin xyz="0.022 -0.132 0.01" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="link_1_1"/>
-  <axis xyz="-0.0 -1.0 -0.0"/>
-</joint>
-
-<joint name="joint_2" type="continuous">
-  <origin xyz="0.022 0.202 0.01" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="link_2_1"/>
-  <axis xyz="0.0 1.0 0.0"/>
-</joint>
- -->
 
 <joint name="right_wheel_joint" type="continuous">
   <origin xyz="0.002 -0.165 0.028" rpy="0 0 0"/>
@@ -281,6 +97,11 @@
   <child link="left_wheel_link"/>
   <axis xyz="0.0 1.0 0.0"/>
 </joint>
+<joint name="laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="laser_frame"/>
+        <origin xyz="0.25 0 0.205" rpy="0 0 0"/>
+</joint>
 
 
 <!-- <joint name="joint_1" type="continuous">
@@ -296,5 +117,7 @@
   <child link="link_2_1"/>
   <axis xyz="0.0 1.0 0.0"/>
 </joint> -->
-
+<material name="red">
+    <color rgba="1 0 0 1"/>
+</material>
 </robot>

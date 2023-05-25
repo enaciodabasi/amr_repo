@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find amr_description)/urdf/amr_simply.xacro"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <remap from="/joint_states" to="/amr/joint_states"/>
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <remap from="/joint_states" to="/amr/joint_states"></remap>
+  </node>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model amr -x 0.0 -y 0.0 -z 0.02"/>
+  <!-- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model amr"/> -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    <!-- <remap from="/joint_states" to="/amr/joint_states"></remap> -->
+    <rosparam param="/gazebo_ros_control/pid_gains">
+      front_left_wheel:
+        p: 10
+        i: 0.1
+        d: 0
+    </rosparam>
+  </include>
+<!--   <include file="$(find amr_control)/launch/amr_control.launch"></include>
+ -->  <node name="rviz" pkg="rviz" type="rviz" required="true">
+    <remap from="/joint_states" to="/amr/joint_states"></remap>
+  </node>
+
+  <param name="use_sim_time" value="true"></param>
+     
+    <node pkg="gmapping" type="slam_gmapping" name="gmapping_thing" output="log">
+        <param name="max_update_interval" value="2.0"></param>
+        <param name="maxUrange" value="29.0"></param>
+        <param name="sigma" value="0.05"></param>
+        <param name="max_update_interval" value="2.0"></param>
+        <param name="kernelSize" value="1"></param>
+        <param name="lstep" value="0.05"></param>
+        <param name="astep" value="0.05"></param>
+        <param name="iterations" value="20"></param>
+        <param name="lsigma" value="0.075"></param>
+        <param name="ogain" value="3.0"></param>
+        <param name="lskip" value="0"></param>
+        <param name="srr" value="0.1"></param>
+        <param name="srt" value="0.2"></param>
+        <param name="str" value="0.1"></param>
+        <param name="stt" value="0.2"></param>
+        <param name="linearUpdate" value="-0.01"></param>
+        <param name="angularUpdate" value="-0.005"></param>
+        <param name="temporalUpdate" value="0.0"></param>
+        <param name="resampleThreshold" value="0.5"></param>
+        <param name="particles" value="2"></param>
+        <param name="xmin" value="-10.0"></param>
+        <param name="ymin" value="-10.0"></param>
+        <param name="xmax" value="10.0"></param>
+        <param name="ymax" value="10.0"></param>
+        <param name="delta" value="0.05"></param>
+        <param name="llsamplerange" value="0.01"></param>
+        <param name="llsamplestep" value="0.01"></param>
+        <param name="lasamplerange" value="0.005"></param>
+        <param name="lasamplestep" value="0.005"></param>
+    </node>
+</launch>
